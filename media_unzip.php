@@ -74,7 +74,7 @@ class MediaUnzip {
 
                         $attachment = [
                             'guid' => $media_file_name,
-                            'post_mim_type' => $filetype['type'],
+                            'post_mime_type' => $filetype['type'],
                             'post_title' => preg_replace("/\.[^.]+$/", '', $zip->getNameIndex($i)),
                             'post_content' => '',
                             'post_status' => 'inherit'
