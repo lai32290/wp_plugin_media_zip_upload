@@ -24,7 +24,6 @@ class MediaUnzip {
 
 
     public function __construct() {
-        add_action('admin_menu', [$this, 'save_admin_page']);
         add_action('admin_menu', [$this, 'create_admin_menu']);
     }
 
@@ -98,24 +97,29 @@ class MediaUnzip {
         }
     }
 
+    public function create_admin_form() {
+        ?>
+
+        <h3>Media Zip</h3>
+        <form action="/wp-admin/admin.php?page=upload_media_zip"
+            enctype="multipart/form-data" method="post">
+            <div>
+                <label>
+                    Selecione o arquivo zip
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                </label>
+            </div>
+            <div>
+                <?php submit_button(); ?>
+            </div>
+
+        </form>
+        <?php
+    }
+
     public function create_admin_page() {
-?>
-
-<h3>Media Zip</h3>
-<form action="/wp-admin/admin.php?page=upload_media_zip"
-    enctype="multipart/form-data" method="post">
-    <div>
-        <label>
-            Selecione o arquivo zip
-            <input type="file" name="fileToUpload" id="fileToUpload">
-        </label>
-    </div>
-    <div>
-        <?php submit_button(); ?>
-    </div>
-
-</form>
-<?php
+        $this->save_admin_page();
+        $this->create_admin_form();
     }
 }
 
